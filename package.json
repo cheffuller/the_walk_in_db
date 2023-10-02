@@ -1,0 +1,32 @@
+{
+  "name": "the_walk_in",
+  "version": "1.0.0",
+  "description": "ACA Capston App Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheffuller/the_walk_in.git"
+  },
+  "keywords": [
+    "node.js",
+    "express.js",
+    "sequelize",
+    "mysql"
+  ],
+  "author": "cheffuller",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cheffuller/the_walk_in/issues"
+  },
+  "homepage": "https://github.com/cheffuller/the_walk_in#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.1",
+    "sequelize": "^6.33.0"
+  }
+}
