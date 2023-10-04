@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
   
-    const Company = sequelize.define('company ', {
+    const Address = sequelize.define('address ', {
   
         id: {
             type: Sequelize.UUID,
@@ -8,30 +8,19 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
             primaryKey: true
         },
-        name: {
+        line_1: {
             type: Sequelize.STRING
         },
-        // address_id: {
-        //     type: Sequelize.STRING,
-        //     references: {
-        //         model: Address,
-        //         key: 'id'
-        //     }
-        // },
-        // delivery_address_id: {
-        //     type: Sequelize.STRING,
-        //     references: {
-        //         model: Address,
-        //         key: 'id'
-        //     }
-        // },
-        phone: {
+        line_2: {
             type: Sequelize.STRING
         },
-        email: {
+        city: {
             type: Sequelize.STRING
         },
-        payment: {
+        state: {
+            type: Sequelize.STRING
+        },
+        zip: {
             type: Sequelize.STRING
         }
     }, {
@@ -50,8 +39,8 @@ module.exports = (sequelize, Sequelize) => {
         freezeTableName: true,
       
         // define the table's name
-        tableName: 'companies',
+        tableName: 'address',
     });
       
-    return Company;
+    return Address;
 };

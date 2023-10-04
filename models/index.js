@@ -15,8 +15,10 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   
 const db = {};
   
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
-db.company = require('./company.model')(sequelize, Sequelize);
+// db.Sequelize = Sequelize;
+// db.sequelize = sequelize;
+// db.address = require('./address.model')(sequelize, Sequelize);
+// db.company = require('./company.model');
+// db.company.hasMany(db.address)
 
-module.exports = db;
+module.exports = sequelize;
