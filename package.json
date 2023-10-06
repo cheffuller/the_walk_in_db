@@ -2,10 +2,10 @@
   "name": "the_walk_in",
   "version": "1.0.0",
   "description": "ACA Capston App Project",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "npm start",
-    "start": "nodemon ./index.js"
+    "start": "nodemon ./server,js"
   },
   "repository": {
     "type": "git",

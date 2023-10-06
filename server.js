@@ -14,6 +14,7 @@ app.use(express.json()); // parsing application/json
 app.use(express.urlencoded({ extended: true })); // parsing application/x-www-form-urlencoded
 
 require('./routes/company.routes.js')(app);
+require('./routes/address.routes.js')(app)
 
 const PORT = process.env.PORT || 8080; // Port
 

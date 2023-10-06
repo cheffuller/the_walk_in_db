@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
-const sequelize = require('./index.js');
+const sequelize = require("./index.js");
 
 class Company extends Model {}
 
@@ -35,13 +35,10 @@ Company.init(
     // disable the modification of tablenames
     freezeTableName: true,
 
-    // define the table's name
     tableName: "company",
-  
-    // Other model options go here
     sequelize,
     modelName: "Company",
   }
 );
 
-module.exports = Company
+module.exports = Company;
