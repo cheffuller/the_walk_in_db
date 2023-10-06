@@ -1,28 +1,32 @@
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
+const sequelize = require('./models/index.js')
+require('dotenv').config()
+
 const app = express();
-const db = require('./models/index');
 
-var corsOptions = {
-  origin: 'http://localhost:4200' // URL of the frontend
-};
+// var corsOptions = {
+//   origin: 'http://localhost:4200' // URL of the frontend
+// };
+// app.use(cors(corsOptions));
 
-app.use(cors(corsOptions));
 app.use(express.json()); // parsing application/json
 app.use(express.urlencoded({ extended: true })); // parsing application/x-www-form-urlencoded
-
-// db.sync({ force: true });
 
 require('./routes/company.routes.js')(app);
 
 const PORT = process.env.PORT || 8080; // Port
 
-// app.listen(PORT, () => {
-//    console.log(`Server is running on port ${PORT}.`);
-// });
+sequelize.authenticate().then(() => {
+  console.log('Connection has been established successfully.');
+}).catch((error) => {
+  console.error('Unable to connect to the database: ', error);
+});
 
-db.sync({ force: true }).then(() => {
+sequelize.sync().then(() => {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
   });
 });
+
+// { force: true }

@@ -3,10 +3,10 @@ module.exports = app => {
     var router = require('express').Router();  
     
     router.post('/', company.create);
-    // router.get('/', company.findAll);
-    // router.get('/:id', company.findOne);
-    // router.put('/:id', company.update);
-    // router.delete('/:id', company.delete);
+    router.get('/', company.findAll);
+    router.get('/:id', company.findOne);
+    router.put('/:id', company.update);
+    router.delete('/:id', company.delete);
 
     app.use('/api/company', router);
 };

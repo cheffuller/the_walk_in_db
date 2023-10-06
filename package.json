@@ -4,7 +4,8 @@
   "description": "ACA Capston App Project",
   "main": "index.js",
   "scripts": {
-    "test": "npm start"
+    "test": "npm start",
+    "start": "nodemon ./index.js"
   },
   "repository": {
     "type": "git",
