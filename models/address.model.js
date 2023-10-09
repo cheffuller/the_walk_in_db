@@ -43,7 +43,4 @@ Address.init(
   }
 );
 
-sequelize.models.Company.hasMany(Address, { foreignKey: 'id' })
-sequelize.models.Company.belongsTo(Address)
-
 module.exports = Address;

@@ -1,110 +1,109 @@
-const User = require("../models/user.model.js");
+const Delivery = require("../models/delivery.model.js");
 const Sequelize = require("sequelize");
 
-// Create User
+// Create Delivery
 exports.create = (req, res) => {
-  const user = {
-    username: req.body.username,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    phone: req.body.phone,
-    password: req.body.password,
+  const delivery = {
+    date: req.body.date,
+    start: req.body.start,
+    end: req.body.end,
+    instructions: req.body.instructions,
   };
-  User.create(user)
+  Delivery.create(delivery)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the User.",
+        message:
+          err.message || "Some error occurred while creating the delivery.",
       });
     });
 };
 
-// Find All Users
+// Find All Deliveries
 exports.findAll = (req, res) => {
-  User.findAll()
+  Delivery.findAll()
     .then((data) => {
       if (data) {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find Users`,
+          message: `Cannot find deliveries`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Users",
+        message: "Error retrieving deliveries",
       });
     });
 };
 
-// Find Single User
+// Find Single Delivery
 exports.findOne = (req, res) => {
   const id = req.params.id;
-  User.findByPk(id)
+  Delivery.findByPk(id)
     .then((data) => {
       if (data) {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find User with id=${id}.`,
+          message: `Cannot find delivery with id=${id}.`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving User with id=" + id,
+        message: "Error retrieving delivery with id=" + id,
       });
     });
 };
 
-// Update User
+// Update Delivery
 exports.update = (req, res) => {
   const id = req.params.id;
-  User.update(req.body, {
+  Delivery.update(req.body, {
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "User was updated successfully.",
+          message: "Delivery was updated successfully.",
         });
       } else {
         res.send({
-          message: `Cannot update User with id=${id}.`,
+          message: `Cannot update delivery with id=${id}.`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating User with id=" + id,
+        message: "Error updating delivery with id=" + id,
       });
     });
 };
 
-// Delete User
+// Delete Delivery
 exports.delete = (req, res) => {
   const id = req.params.id;
-  User.destroy({
+  Delivery.destroy({
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "User was deleted successfully!",
+          message: "Delivery was deleted successfully!",
         });
       } else {
         res.send({
-          message: `Cannot delete User with id=${id}.`,
+          message: `Cannot delete delivery with id=${id}.`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete User with id=" + id,
+        message: "Could not delete delivery with id=" + id,
       });
     });
 };

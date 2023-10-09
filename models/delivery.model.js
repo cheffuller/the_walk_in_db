@@ -1,10 +1,11 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 const sequelize = require("./index.js");
-const User = require("./user.model.js");
+const Cart = require("./cart.model.js");
+const Address = require("./address.model.js");
 
-class Cart extends Model {}
+class Delivery extends Model {}
 
-Cart.init(
+Delivery.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -12,14 +13,17 @@ Cart.init(
       allowNull: false,
       primaryKey: true,
     },
-    item_quantity: {
+    date: {
+      type: DataTypes.DATE,
+    },
+    start: {
+      type: DataTypes.DATE,
+    },
+    end: {
+      type: DataTypes.DATE,
+    },
+    instructions: {
       type: DataTypes.STRING,
-    },
-    total_price: {
-      type: DataTypes.DECIMAL,
-    },
-    status: {
-      type: DataTypes.BOOLEAN,
     },
   },
   {
@@ -33,10 +37,15 @@ Cart.init(
     // disable the modification of tablenames
     freezeTableName: true,
 
-    tableName: "cart",
+    tableName: "delivery",
     sequelize,
-    modelName: "Cart",
+    modelName: "Delivery",
   }
 );
 
-module.exports = Cart;
+Delivery.hasOne(Cart, {foreignKey: 'id'})
+Delivery.belongsTo(Cart)
+Delivery.hasOne(Address, {foreignKey: 'id'})
+Delivery.belongsTo(Address)
+
+module.exports = Delivery;

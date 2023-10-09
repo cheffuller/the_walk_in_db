@@ -1,10 +1,11 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 const sequelize = require("./index.js");
-const User = require("./user.model.js");
+const Address = require("./address.model.js");
+const Product = require("./product.model.js");
 
-class Cart extends Model {}
+class Vendor extends Model {}
 
-Cart.init(
+Vendor.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -12,14 +13,17 @@ Cart.init(
       allowNull: false,
       primaryKey: true,
     },
-    item_quantity: {
+    name: {
       type: DataTypes.STRING,
     },
-    total_price: {
-      type: DataTypes.DECIMAL,
+    contact: {
+      type: DataTypes.STRING,
     },
-    status: {
-      type: DataTypes.BOOLEAN,
+    phone: {
+      type: DataTypes.STRING,
+    },
+    email: {
+      type: DataTypes.STRING,
     },
   },
   {
@@ -33,10 +37,16 @@ Cart.init(
     // disable the modification of tablenames
     freezeTableName: true,
 
-    tableName: "cart",
+    tableName: "vendor",
     sequelize,
-    modelName: "Cart",
+    modelName: "Vendor",
   }
 );
 
-module.exports = Cart;
+Vendor.hasOne(Address, {foreignKey: 'id'})
+Vendor.belongsTo(Address)
+Vendor.hasMany(Product, {foreignKey: 'id'})
+Product.belongsTo(Vendor)
+
+
+module.exports = Vendor;

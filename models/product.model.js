@@ -2,9 +2,9 @@ const { Sequelize, DataTypes, Model } = require("sequelize");
 const sequelize = require("./index.js");
 const Cart = require("./cart.model.js");
 
-class User extends Model {}
+class Product extends Model {}
 
-User.init(
+Product.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -12,24 +12,37 @@ User.init(
       allowNull: false,
       primaryKey: true,
     },
-    username: {
+    label: {
       type: DataTypes.STRING,
     },
-    first_name: {
+    name: {
       type: DataTypes.STRING,
     },
-    last_name: {
+    category: {
       type: DataTypes.STRING,
     },
-    email: {
-      type: DataTypes.STRING,
+    photo: {
+      type: DataTypes.BLOB,
     },
-    password: {
-      type: DataTypes.STRING,
+    description: {
+        type: DataTypes.STRING,
     },
-    phone: {
-      type: DataTypes.STRING,
-    }
+    price: {
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+    },
+    pack_size: {
+        type: DataTypes.STRING,
+    },
+    weight_value: {
+        type: DataTypes.STRING,
+    },
+    weight_unit: {
+        type: DataTypes.STRING,
+    },
+    nutrition_info: {
+        type: DataTypes.STRING,
+    },
   },
   {
     // don't delete database entries but set the newly added attribute deletedAt
@@ -42,13 +55,13 @@ User.init(
     // disable the modification of tablenames
     freezeTableName: true,
 
-    tableName: "user",
+    tableName: "product",
     sequelize,
-    modelName: "User",
+    modelName: "Product",
   }
 );
 
-User.hasMany(Cart, {foreignKey: 'id'})
-Cart.belongsTo(User)
+Product.belongsToMany(Cart, {through: 'cart__product'})
+Cart.belongsToMany(Product, {through: 'cart__product'})
 
-module.exports = User;
+module.exports = Product;

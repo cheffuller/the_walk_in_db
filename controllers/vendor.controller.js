@@ -1,110 +1,110 @@
-const User = require("../models/user.model.js");
+const Vendor = require("../models/vendor.model.js");
 const Sequelize = require("sequelize");
 
-// Create User
+// Create Vendor
 exports.create = (req, res) => {
-  const user = {
-    username: req.body.username,
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
+  const vendor = {
+    name: req.body.name,
     phone: req.body.phone,
-    password: req.body.password,
+    email: req.body.email,
+    payment: req.body.payment,
   };
-  User.create(user)
+  Vendor.create(vendor)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the User.",
+        message:
+          err.message || "Some error occurred while creating the Vendor.",
       });
     });
 };
 
-// Find All Users
+// Find All Vendors
 exports.findAll = (req, res) => {
-  User.findAll()
+  const id = req.params.id;
+  Vendor.findAll()
     .then((data) => {
       if (data) {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find Users`,
+          message: `Cannot find Vendors`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Users",
+        message: "Error retrieving Vendors",
       });
     });
 };
 
-// Find Single User
+// Find Single Vendor
 exports.findOne = (req, res) => {
   const id = req.params.id;
-  User.findByPk(id)
+  Vendor.findByPk(id)
     .then((data) => {
       if (data) {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find User with id=${id}.`,
+          message: `Cannot find Vendor with id=${id}.`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving User with id=" + id,
+        message: "Error retrieving Vendor with id=" + id,
       });
     });
 };
 
-// Update User
+// Update Vendor
 exports.update = (req, res) => {
   const id = req.params.id;
-  User.update(req.body, {
+  Vendor.update(req.body, {
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "User was updated successfully.",
+          message: "Vendor was updated successfully.",
         });
       } else {
         res.send({
-          message: `Cannot update User with id=${id}.`,
+          message: `Cannot update Vendor with id=${id}.`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating User with id=" + id,
+        message: "Error updating Vendor with id=" + id,
       });
     });
 };
 
-// Delete User
+// Delete Vendor
 exports.delete = (req, res) => {
   const id = req.params.id;
-  User.destroy({
+  Vendor.destroy({
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "User was deleted successfully!",
+          message: "Vendor was deleted successfully!",
         });
       } else {
         res.send({
-          message: `Cannot delete User with id=${id}.`,
+          message: `Cannot delete Vendor with id=${id}.`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete User with id=" + id,
+        message: "Could not delete Vendor with id=" + id,
       });
     });
 };

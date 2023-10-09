@@ -17,6 +17,9 @@ require("./routes/company.routes.js")(app);
 require("./routes/address.routes.js")(app);
 require("./routes/user.routes.js")(app);
 require("./routes/cart.routes.js")(app);
+require("./routes/delivery.routes.js")(app);
+require("./routes/vendor.routes.js")(app);
+require("./routes/product.routes.js")(app);
 
 const PORT = process.env.PORT || 8080; // Port
 
