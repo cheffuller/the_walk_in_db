@@ -26,6 +26,9 @@ Address.init(
     zip: {
       type: Sequelize.STRING,
     },
+    delivery: {
+      type: Sequelize.BOOLEAN
+    }
   },
   {
     // don't use camelcase for automatically added attributes but underscore style
@@ -39,5 +42,8 @@ Address.init(
     modelName: "Address",
   }
 );
+
+sequelize.models.Company.hasMany(Address, { foreignKey: 'id' })
+sequelize.models.Company.belongsTo(Address)
 
 module.exports = Address;
