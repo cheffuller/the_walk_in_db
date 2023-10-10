@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 const sequelize = require("./index.js");
 const Cart = require("./cart.model.js");
+const Company = require("./company.model.js");
 
 class User extends Model {}
 
@@ -14,21 +15,35 @@ User.init(
     },
     username: {
       type: DataTypes.STRING,
+      allowNull: false
     },
     first_name: {
       type: DataTypes.STRING,
+      allowNull: false
     },
     last_name: {
       type: DataTypes.STRING,
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING,
+      allowNull: false
     },
     password: {
       type: DataTypes.STRING,
+      allowNull: false
     },
     phone: {
       type: DataTypes.STRING,
+      allowNull: false
+    },
+    company_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      references: {
+        model: Company,
+        key: 'id'
+      }
     }
   },
   {

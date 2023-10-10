@@ -1,3 +1,4 @@
+const Company = require("../models/company.model.js");
 const User = require("../models/user.model.js");
 const Sequelize = require("sequelize");
 
@@ -10,7 +11,8 @@ exports.create = (req, res) => {
     email: req.body.email,
     phone: req.body.phone,
     password: req.body.password,
-  };
+    company_id: req.body.company_id
+  }
   User.create(user)
     .then((data) => {
       res.send(data);

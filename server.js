@@ -32,7 +32,7 @@ sequelize
     console.error("Unable to connect to the database: ", error);
   });
 
-sequelize.sync().then(() => {
+sequelize.sync({force:true}).then(() => {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
   });
