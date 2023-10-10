@@ -13,18 +13,22 @@ Address.init(
     },
     line_1: {
       type: Sequelize.STRING,
+      allowNull: false
     },
     line_2: {
       type: Sequelize.STRING,
     },
     city: {
       type: Sequelize.STRING,
+      allowNull: false
     },
     state: {
       type: Sequelize.STRING,
+      allowNull: false
     },
     zip: {
       type: Sequelize.STRING,
+      allowNull: false
     },
     delivery: {
       type: Sequelize.BOOLEAN

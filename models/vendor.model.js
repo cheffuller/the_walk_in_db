@@ -15,15 +15,18 @@ Vendor.init(
     },
     name: {
       type: DataTypes.STRING,
+      allowNull: false
     },
     contact: {
       type: DataTypes.STRING,
     },
     phone: {
       type: DataTypes.STRING,
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING,
+      allowNull: false
     },
   },
   {

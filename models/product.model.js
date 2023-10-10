@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 const sequelize = require("./index.js");
 const Cart = require("./cart.model.js");
+const Vendor = require("./vendor.model.js");
 
 class Product extends Model {}
 
@@ -17,6 +18,7 @@ Product.init(
     },
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     category: {
       type: DataTypes.STRING,
@@ -25,23 +27,30 @@ Product.init(
       type: DataTypes.BLOB,
     },
     description: {
-        type: DataTypes.STRING,
+      type: DataTypes.STRING,
     },
     price: {
-        type: DataTypes.DECIMAL,
-        allowNull: false,
+      type: DataTypes.DECIMAL,
+      allowNull: false,
     },
     pack_size: {
-        type: DataTypes.STRING,
+      type: DataTypes.STRING,
     },
     weight_value: {
-        type: DataTypes.STRING,
+      type: DataTypes.STRING,
     },
     weight_unit: {
-        type: DataTypes.STRING,
+      type: DataTypes.STRING,
     },
     nutrition_info: {
-        type: DataTypes.STRING,
+      type: DataTypes.STRING,
+    },
+    vendor_id: {
+      type: DataTypes.UUID,
+      references: {
+        model: Vendor,
+        key: "id",
+      },
     },
   },
   {
@@ -66,19 +75,19 @@ class Cart__Product extends Model {}
 Cart__Product.init(
   {
     product_id: {
-        type: DataTypes.UUID,
-        references: {
-            model: Product,
-            key: 'id'
-        }
+      type: DataTypes.UUID,
+      references: {
+        model: Product,
+        key: "id",
+      },
     },
     cart_id: {
-        type: DataTypes.UUID,
-        references: {
-            model: Cart,
-            key: 'id'
-        }
-    }
+      type: DataTypes.UUID,
+      references: {
+        model: Cart,
+        key: "id",
+      },
+    },
   },
   {
     timestamps: false,
@@ -99,7 +108,7 @@ Cart__Product.init(
   }
 );
 
-Product.belongsToMany(Cart, {through: 'Cart__Product'})
-Cart.belongsToMany(Product, {through: 'Cart__Product'})
+Product.belongsToMany(Cart, { through: "Cart__Product" });
+Cart.belongsToMany(Product, { through: "Cart__Product" });
 
-module.exports = Product, Cart__Product;
+(module.exports = Product), Cart__Product;

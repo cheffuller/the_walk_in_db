@@ -15,6 +15,7 @@ Delivery.init(
     },
     date: {
       type: DataTypes.DATE,
+      allowNull: false
     },
     start: {
       type: DataTypes.DATE,
@@ -25,6 +26,22 @@ Delivery.init(
     instructions: {
       type: DataTypes.STRING,
     },
+    cart_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      references: {
+        model: Cart,
+        key: "id"
+      }
+    },
+    address_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      references: {
+        model: Address,
+        key: "id"
+      }
+    }
   },
   {
     // don't delete database entries but set the newly added attribute deletedAt

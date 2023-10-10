@@ -9,6 +9,7 @@ Cart__Product.init(
   {
     product_id: {
         type: DataTypes.UUID,
+        allowNull: false,
         references: {
             model: Product,
             key: 'id'
@@ -16,6 +17,7 @@ Cart__Product.init(
     },
     cart_id: {
         type: DataTypes.UUID,
+        allowNull: false,
         references: {
             model: Cart,
             key: 'id'

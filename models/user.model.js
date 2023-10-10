@@ -15,36 +15,36 @@ User.init(
     },
     username: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     first_name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     phone: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     company_id: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
         model: Company,
-        key: 'id'
-      }
-    }
+        key: "id",
+      },
+    },
   },
   {
     // don't delete database entries but set the newly added attribute deletedAt
@@ -63,7 +63,7 @@ User.init(
   }
 );
 
-User.hasMany(Cart, {foreignKey: 'id'})
-Cart.belongsTo(User)
+User.hasMany(Cart, { foreignKey: "id" });
+Cart.belongsTo(User);
 
 module.exports = User;
