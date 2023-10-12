@@ -63,7 +63,7 @@ User.init(
   }
 );
 
-User.hasMany(Cart, { foreignKey: "id" });
-Cart.belongsTo(User);
+User.Cart = User.hasMany(Cart, { foreignKey: "id" });
+Cart.User = Cart.belongsTo(User);
 
 module.exports = User;

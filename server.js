@@ -20,6 +20,8 @@ require("./routes/cart.routes.js")(app);
 require("./routes/delivery.routes.js")(app);
 require("./routes/vendor.routes.js")(app);
 require("./routes/product.routes.js")(app);
+require("./routes/cart__product.routes.js")(app);
+require("./routes/company__vendor.routes.js")(app);
 
 const PORT = process.env.PORT || 8080; // Port
 
@@ -32,7 +34,7 @@ sequelize
     console.error("Unable to connect to the database: ", error);
   });
 
-sequelize.sync({force:true}).then(() => {
+sequelize.sync({alter:true}).then(() => {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
   });

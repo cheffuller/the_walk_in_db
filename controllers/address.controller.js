@@ -9,8 +9,9 @@ exports.create = (req, res) => {
     city: req.body.city,
     state: req.body.state,
     zip: req.body.zip,
+    delivery: req.body.delivery
   };
-  Address.create(company)
+  Address.create(address)
     .then((data) => {
       res.send(data);
     })

@@ -1,5 +1,4 @@
 const Cart = require("../models/cart.model.js");
-const Sequelize = require("sequelize");
 
 // Create Cart
 exports.create = (req, res) => {
@@ -7,6 +6,7 @@ exports.create = (req, res) => {
     item_quantity: req.body.item_quantity,
     total_price: req.body.total_price,
     status: req.body.status,
+    user_id: req.body.user_id
   };
   Cart.create(cart)
     .then((data) => {

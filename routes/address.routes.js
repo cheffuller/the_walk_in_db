@@ -6,5 +6,5 @@ module.exports = app => {
     router.put('/:id', address.update);
     router.delete('/:id', address.delete);
 
-    app.use('/api/company', router);
+    app.use('/api/address', router);
 };

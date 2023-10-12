@@ -7,7 +7,7 @@ exports.create = (req, res) => {
     name: req.body.name,
     phone: req.body.phone,
     email: req.body.email,
-    payment: req.body.payment,
+    contact: req.body.contact,
   };
   Vendor.create(vendor)
     .then((data) => {

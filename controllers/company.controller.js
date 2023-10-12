@@ -8,6 +8,8 @@ exports.create = (req, res) => {
     phone: req.body.phone,
     email: req.body.email,
     payment: req.body.payment,
+    address_id: req.body.address_id,
+    delivery_address_id: req.body.delivery_address_id
   };
   Company.create(company)
     .then((data) => {

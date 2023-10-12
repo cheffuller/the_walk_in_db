@@ -1,34 +1,28 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 const sequelize = require("./index.js");
-const User = require("./user.model.js");
+const Company = require("./company.model.js");
+const Vendor = require("./vendor.model.js");
 
-class Cart extends Model {}
+class Company__Vendor extends Model {}
 
-Cart.init(
+Company__Vendor.init(
   {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-      primaryKey: true,
-    },
-    item_quantity: {
-      type: DataTypes.STRING,
-    },
-    total_price: {
-      type: DataTypes.DECIMAL(10, 2),
-    },
-    status: {
-      type: DataTypes.BOOLEAN,
-    },
-    user_id: {
+    company_id: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
-        model: User,
-        key: "id"
-      }
-    }
+        model: Company,
+        key: "id",
+      },
+    },
+    vendor_id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      references: {
+        model: Vendor,
+        key: "id",
+      },
+    },
   },
   {
     // don't delete database entries but set the newly added attribute deletedAt
@@ -41,10 +35,13 @@ Cart.init(
     // disable the modification of tablenames
     freezeTableName: true,
 
-    tableName: "cart",
+    tableName: "company__vendor",
     sequelize,
-    modelName: "Cart",
+    modelName: "Company__Vendor",
   }
 );
 
-module.exports = Cart;
+Company.belongsToMany(Vendor, { through: "Company__Vendor" });
+Vendor.belongsToMany(Company, { through: "Company__Vendor" });
+
+module.exports = Company__Vendor;

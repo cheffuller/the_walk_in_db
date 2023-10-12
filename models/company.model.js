@@ -63,51 +63,10 @@ Company.init(
   }
 );
 
-class Company__Vendor extends Model {}
-
-Company__Vendor.init(
-  {
-    company_id: {
-      type: DataTypes.UUID,
-      references: {
-        model: Company,
-        key: "id",
-      },
-    },
-    vendor_id: {
-      type: DataTypes.UUID,
-      references: {
-        model: Vendor,
-        key: "id",
-      },
-    },
-  },
-  {
-    timestamps: false,
-
-    // don't delete database entries but set the newly added attribute deletedAt
-    // to the current date (when deletion was done).
-    paranoid: true,
-
-    // don't use camelcase for automatically added attributes but underscore style
-    underscored: true,
-
-    // disable the modification of tablenames
-    freezeTableName: true,
-
-    tableName: "company__vendor",
-    sequelize,
-    modelName: "Company__Vendor",
-  }
-);
 
 Company.hasMany(User, { foreignKey: "id" });
 User.Company = User.belongsTo(Company);
 Company.hasMany(Address, { foreignKey: "id" });
-Company.belongsTo(Address);
-Company.belongsToMany(Vendor, { through: "Company__Vendor" });
-Vendor.belongsToMany(Company, { through: "Company__Vendor" });
-Company__Vendor.belongsTo(Company);
-Company__Vendor.belongsTo(Vendor);
+Company.Address = Company.belongsTo(Address);
 
-(module.exports = Company), Company__Vendor;
+(module.exports = Company);

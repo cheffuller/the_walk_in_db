@@ -14,6 +14,7 @@ exports.create = (req, res) => {
     weight_value: req.body.weight_value,
     weight_unit: req.body.weight_unit,
     nutrition_info: req.body.nutrition_info,
+    vendor_id: req.body.vendor_id
   };
   Product.create(product)
     .then((data) => {

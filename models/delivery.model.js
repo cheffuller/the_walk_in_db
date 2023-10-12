@@ -60,9 +60,9 @@ Delivery.init(
   }
 );
 
-Delivery.hasOne(Cart, {foreignKey: 'id'})
+Cart.hasOne(Delivery)
 Delivery.belongsTo(Cart)
-Delivery.hasOne(Address, {foreignKey: 'id'})
+Address.hasOne(Delivery)
 Delivery.belongsTo(Address)
 
 module.exports = Delivery;

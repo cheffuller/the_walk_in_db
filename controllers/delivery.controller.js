@@ -8,6 +8,8 @@ exports.create = (req, res) => {
     start: req.body.start,
     end: req.body.end,
     instructions: req.body.instructions,
+    cart_id: req.body.cart_id,
+    address_id: req.body.address_id
   };
   Delivery.create(delivery)
     .then((data) => {
