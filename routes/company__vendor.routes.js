@@ -3,7 +3,7 @@ module.exports = app => {
     var router = require('express').Router();  
     
     router.post('/', company__vendor.create);
-    router.delete('/:id', company__vendor.delete);
+    router.delete('/', company__vendor.delete);
 
     app.use('/api/company__vendor', router);
 };

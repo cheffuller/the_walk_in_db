@@ -1,43 +1,46 @@
+const Cart = require("../models/cart.model");
+const Product = require("../models/product.model");
 const Cart__Product = require("../models/cart__product.model");
 
 // Create Cart__Product
-exports.create = (req, res) => {
-  const cart__product = {
-    product_id: req.body.product_id,
-    cart_id: req.body.cart_id,
-  };
-  Cart__Product.create(cart__product)
+exports.create = async (req, res) => {
+  const cart = await Cart.findByPk(req.body.cart_id);
+  const product = await Product.findByPk(req.body.product_id);
+
+  cart
+    .addProduct(product)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the cart.",
+        message:
+          err.message ||
+          "Some error occurred while creating the cart__product.",
       });
     });
 };
 
 // Delete Cart__Product
-exports.delete = (req, res) => {
-const cart_id = req.body.cart_id;
-  const product_id = req.body.product_id;
-  Cart__Product.destroy({
-    where: { cart_id: cart_id, product_id: product_id },
-  })
-    .then((num) => {
+exports.delete = async (req, res) => {
+  const cart = await Cart.findByPk(req.body.cart_id);
+  const product = await Product.findByPk(req.body.product_id);
+
+  try {
+    cart.removeProduct(product).then((num) => {
       if (num == 1) {
         res.send({
-          message: "Cart was deleted successfully!",
+          message: "Cart__product was deleted successfully!",
         });
       } else {
         res.send({
-          message: `Cannot delete cart.`,
+          message: `Cannot delete cart__product.`,
         });
       }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: "Could not delete cart",
-      });
     });
+  } catch (err) {
+    res.status(500).send({
+      message: "Could not delete cart__product",
+    });
+  }
 };

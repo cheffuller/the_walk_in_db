@@ -35,6 +35,10 @@ Address.init(
     }
   },
   {
+    // don't delete database entries but set the newly added attribute deletedAt
+    // to the current date (when deletion was done).
+    paranoid: true,
+
     // don't use camelcase for automatically added attributes but underscore style
     underscored: true,
 

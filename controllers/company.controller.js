@@ -25,7 +25,6 @@ exports.create = (req, res) => {
 
 // Find All Companies
 exports.findAll = (req, res) => {
-  const id = req.params.id;
   Company.findAll()
     .then((data) => {
       if (data) {
