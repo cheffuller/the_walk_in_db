@@ -7,8 +7,6 @@ const cart = require("./cart");
 const delivery = require("./delivery");
 const vendor = require("./vendor");
 const product = require("./product");
-const cart__product = require("./cart__product");
-const company__vendor = require("./company__vendor");
 
 const Address = require("../models/address.model");
 const Company = require("../models/company.model");
