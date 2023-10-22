@@ -10,10 +10,10 @@ exports.create = (req, res) => {
   };
   Cart.create(cart)
     .then((data) => {
-      res.send(data);
+      res.json(data);
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: err.message || "Some error occurred while creating the cart.",
       });
     });
@@ -24,15 +24,15 @@ exports.findAll = (req, res) => {
   Cart.findAll()
     .then((data) => {
       if (data) {
-        res.send(data);
+        res.json(data);
       } else {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot find Carts`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error retrieving Carts",
       });
     });
@@ -44,15 +44,15 @@ exports.findOne = (req, res) => {
   Cart.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data);
+        res.json(data);
       } else {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot find cart with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error retrieving cart with id=" + id,
       });
     });
@@ -66,17 +66,17 @@ exports.update = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.json({
           message: "Cart was updated successfully.",
         });
       } else {
-        res.send({
+        res.json({
           message: `Cannot update cart with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error updating cart with id=" + id,
       });
     });
@@ -90,17 +90,17 @@ exports.delete = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.json({
           message: "Cart was deleted successfully!",
         });
       } else {
-        res.send({
+        res.json({
           message: `Cannot delete cart with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Could not delete cart with id=" + id,
       });
     });

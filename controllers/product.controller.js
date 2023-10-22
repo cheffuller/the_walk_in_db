@@ -18,10 +18,10 @@ exports.create = (req, res) => {
   };
   Product.create(product)
     .then((data) => {
-      res.send(data);
+      res.json(data);
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message:
           err.message || "Some error occurred while creating the Product.",
       });
@@ -34,15 +34,15 @@ exports.findAll = (req, res) => {
   Product.findAll()
     .then((data) => {
       if (data) {
-        res.send(data);
+        res.json(data);
       } else {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot find Products`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error retrieving Products",
       });
     });
@@ -54,15 +54,15 @@ exports.findOne = (req, res) => {
   Product.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data);
+        res.json(data);
       } else {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot find Product with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error retrieving Product with id=" + id,
       });
     });
@@ -76,17 +76,17 @@ exports.update = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.json({
           message: "Product was updated successfully.",
         });
       } else {
-        res.send({
+        res.json({
           message: `Cannot update Product with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error updating Product with id=" + id,
       });
     });
@@ -100,17 +100,17 @@ exports.delete = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.json({
           message: "Product was deleted successfully!",
         });
       } else {
-        res.send({
+        res.json({
           message: `Cannot delete Product with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Could not delete Product with id=" + id,
       });
     });

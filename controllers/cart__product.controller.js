@@ -10,10 +10,10 @@ exports.create = async (req, res) => {
   cart
     .addProduct(product)
     .then((data) => {
-      res.send(data);
+      res.json(data);
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message:
           err.message ||
           "Some error occurred while creating the cart__product.",
@@ -29,17 +29,17 @@ exports.delete = async (req, res) => {
   try {
     cart.removeProduct(product).then((num) => {
       if (num == 1) {
-        res.send({
+        res.json({
           message: "Cart__product was deleted successfully!",
         });
       } else {
-        res.send({
+        res.json({
           message: `Cannot delete cart__product.`,
         });
       }
     });
   } catch (err) {
-    res.status(500).send({
+    res.status(500).json({
       message: "Could not delete cart__product",
     });
   }

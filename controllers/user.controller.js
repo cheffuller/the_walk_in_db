@@ -15,10 +15,10 @@ exports.create = (req, res) => {
   }
   User.create(user)
     .then((data) => {
-      res.send(data);
+      res.json(data);
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: err.message || "Some error occurred while creating the User.",
       });
     });
@@ -29,15 +29,15 @@ exports.findAll = (req, res) => {
   User.findAll()
     .then((data) => {
       if (data) {
-        res.send(data);
+        res.json(data);
       } else {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot find Users`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error retrieving Users",
       });
     });
@@ -49,15 +49,15 @@ exports.findOne = (req, res) => {
   User.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data);
+        res.json(data);
       } else {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot find User with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error retrieving User with id=" + id,
       });
     });
@@ -71,17 +71,17 @@ exports.update = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.json({
           message: "User was updated successfully.",
         });
       } else {
-        res.send({
+        res.json({
           message: `Cannot update User with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error updating User with id=" + id,
       });
     });
@@ -95,17 +95,17 @@ exports.delete = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.json({
           message: "User was deleted successfully!",
         });
       } else {
-        res.send({
+        res.json({
           message: `Cannot delete User with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Could not delete User with id=" + id,
       });
     });

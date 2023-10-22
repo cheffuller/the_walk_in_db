@@ -11,10 +11,10 @@ exports.create = (req, res) => {
   };
   Vendor.create(vendor)
     .then((data) => {
-      res.send(data);
+      res.json(data);
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message:
           err.message || "Some error occurred while creating the Vendor.",
       });
@@ -27,15 +27,15 @@ exports.findAll = (req, res) => {
   Vendor.findAll()
     .then((data) => {
       if (data) {
-        res.send(data);
+        res.json(data);
       } else {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot find Vendors`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error retrieving Vendors",
       });
     });
@@ -47,15 +47,15 @@ exports.findOne = (req, res) => {
   Vendor.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data);
+        res.json(data);
       } else {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot find Vendor with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error retrieving Vendor with id=" + id,
       });
     });
@@ -69,17 +69,17 @@ exports.update = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.json({
           message: "Vendor was updated successfully.",
         });
       } else {
-        res.send({
+        res.json({
           message: `Cannot update Vendor with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error updating Vendor with id=" + id,
       });
     });
@@ -93,17 +93,17 @@ exports.delete = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.json({
           message: "Vendor was deleted successfully!",
         });
       } else {
-        res.send({
+        res.json({
           message: `Cannot delete Vendor with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Could not delete Vendor with id=" + id,
       });
     });

@@ -10,10 +10,10 @@ exports.create = async (req, res) => {
   company
     .addVendor(vendor)
     .then((data) => {
-      res.send(data);
+      res.json(data);
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message:
           err.message ||
           "Some error occurred while creating the Company__Vendor.",
@@ -29,17 +29,17 @@ exports.delete = async (req, res) => {
   try {
     company.removeVendor(vendor).then((num) => {
       if (num == 1) {
-        res.send({
+        res.json({
           message: "Company__Vendor was deleted successfully!",
         });
       } else {
-        res.send({
+        res.json({
           message: `Cannot delete Company__Vendor.`,
         });
       }
     });
   } catch (err) {
-    res.status(500).send({
+    res.status(500).json({
       message: "Could not delete Company__Vendor",
     });
   }

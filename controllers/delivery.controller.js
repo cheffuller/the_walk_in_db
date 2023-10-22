@@ -13,10 +13,10 @@ exports.create = (req, res) => {
   };
   Delivery.create(delivery)
     .then((data) => {
-      res.send(data);
+      res.json(data);
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message:
           err.message || "Some error occurred while creating the delivery.",
       });
@@ -28,15 +28,15 @@ exports.findAll = (req, res) => {
   Delivery.findAll()
     .then((data) => {
       if (data) {
-        res.send(data);
+        res.json(data);
       } else {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot find deliveries`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error retrieving deliveries",
       });
     });
@@ -48,15 +48,15 @@ exports.findOne = (req, res) => {
   Delivery.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data);
+        res.json(data);
       } else {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot find delivery with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error retrieving delivery with id=" + id,
       });
     });
@@ -70,17 +70,17 @@ exports.update = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.json({
           message: "Delivery was updated successfully.",
         });
       } else {
-        res.send({
+        res.json({
           message: `Cannot update delivery with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error updating delivery with id=" + id,
       });
     });
@@ -94,17 +94,17 @@ exports.delete = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.json({
           message: "Delivery was deleted successfully!",
         });
       } else {
-        res.send({
+        res.json({
           message: `Cannot delete delivery with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Could not delete delivery with id=" + id,
       });
     });

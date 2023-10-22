@@ -13,10 +13,10 @@ exports.create = (req, res) => {
   };
   Address.create(address)
     .then((data) => {
-      res.send(data);
+      res.json(data);
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message:
           err.message || "Some error occurred while creating the address.",
       });
@@ -31,17 +31,17 @@ exports.update = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.json({
           message: "address was updated successfully.",
         });
       } else {
-        res.send({
+        res.json({
           message: `Cannot update address with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Error updating address with id=" + id,
       });
     });
@@ -55,17 +55,17 @@ exports.delete = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.json({
           message: "Address was deleted successfully!",
         });
       } else {
-        res.send({
+        res.json({
           message: `Cannot delete address with id=${id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: "Could not delete address with id=" + id,
       });
     });
